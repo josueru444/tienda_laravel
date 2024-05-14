@@ -235,9 +235,9 @@
         <input  type="text" id="addres-paypal-input" name="address-paypal-input" class="text-white text-xl bg-slate-700 border-2 border-gray-500 rounded-md px-4 py-2">
         <label>Total a pagar:</label>
         <input id="disabled-total" disabled type="text" value="$ MXN" class="text-white text-xl bg-slate-700 border-2 border-gray-500 rounded-md px-4 py-2">
-        <input id="total-paypal" name="total-paypal"  type="text" value="">
-        <input type="text" value="{{$product->id}}" name="product-id">
-        <input type="text" value="" id="quantity-paypal" name="quantity-paypal">
+        <input id="total-paypal" name="total-paypal"  type="hidden" value="">
+        <input type="hidden" value="{{$product->id}}" name="product-id">
+        <input type="hidden" value="" id="quantity-paypal" name="quantity-paypal">
         <button class="bg-yellow-400 text-black flex space-x-5 text-center justify-center mx-10 my-5 py-2 items-center align-middle rounded-md hover:bg-yellow-500">
           <p class="font-semibold text-xl font-sans">Continuar con el pago</p>
           <svg width="70" height="" viewBox="0 0 100 32">

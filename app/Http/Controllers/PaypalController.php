@@ -98,6 +98,7 @@ class PaypalController extends Controller
             $payOrder->orders_id=$lastOrder->id;
             $payOrder->user_id= $userID;
             $payOrder->save();
+          
 
             unset($_SESSION['product_name']);
             unset($_SESSION['address']);
