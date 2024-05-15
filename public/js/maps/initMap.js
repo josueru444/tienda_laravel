@@ -4,10 +4,12 @@ function initMap(coords) {
       zoom: 15,
       center: { lat: 19.43667, lng: -100.35799 },
     });
+    console.log(coords);
     
     const store=[];
 
     for (let index = 0; index < coords.length; index++) {
+      console.log(coords[index].id);
         
         const latDB=parseFloat(coords[index].latitude);
         
@@ -19,11 +21,8 @@ function initMap(coords) {
         
     }
     
-
-    console.log(store);
-   
     const infoWindow = new google.maps.InfoWindow();
-  
+    console.log(store);
     
     store.forEach(([position, title], i) => {
       const marker = new google.maps.Marker({
@@ -44,5 +43,28 @@ function initMap(coords) {
   }
   
 
+  function getLocations() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '/get-map-db/');
+    xhr.responseType = 'json';
+
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            const data = xhr.response;
+            
+            window.initMap=initMap(data.locations);
+        } else {
+            console.error('Error fetching data. Status:', xhr.status);
+        }
+    };
+
+    xhr.onerror = () => {
+        console.error('Network error while fetching data.');
+    };
+
+    xhr.send();
+}
+
+getLocations();
 
   
