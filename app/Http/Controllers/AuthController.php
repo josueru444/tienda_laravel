@@ -41,7 +41,7 @@ class AuthController extends Controller
             }
             
         } catch (\Exception $e) {
-            dd($e);
+            return redirect('/');
         }
 
     }
