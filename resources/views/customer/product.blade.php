@@ -62,6 +62,8 @@
 @section('content')
     <title>Producto</title>
 
+    
+
     <div class="w-full   bg-slate-700">
         <div class="p-8 grid grid-cols-3">
             <img src="{{ $product->img }}" alt="" width="400" class="rounded-xl">

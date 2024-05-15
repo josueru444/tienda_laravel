@@ -47,7 +47,7 @@ class PaypalController extends Controller
         }
       }
     } else {
-      return redirect()->route('cancel');
+      return redirect()->route('customer.home');
     }
   }
 
@@ -107,12 +107,12 @@ class PaypalController extends Controller
             Mail::to($email->email)->send(new PaymentAccepted());
             return redirect('/my-orders/'.$userID);
         } else {
-            return redirect()->route('cancel');
+            return redirect()->route('customer.home');
         }
     }
     public function cancel()
     {
-        return "Pago Cancelado";
+      return redirect()->route('customer.home');
   
   }
 
@@ -150,7 +150,7 @@ class PaypalController extends Controller
         }
       }
     } else {
-      return redirect()->route('cancel');
+      return redirect()->route('customer.home');
     }
   }
 
@@ -226,7 +226,7 @@ class PaypalController extends Controller
             Mail::to($email->email)->send(new PaymentAccepted());
             return redirect('/my-orders/'.$userID);
         } else {
-            return redirect()->route('cancel');
+            return redirect()->route('customer.home');
         }
     }
 

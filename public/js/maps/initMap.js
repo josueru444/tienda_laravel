@@ -20,6 +20,7 @@ function initMap(coords) {
         store[index]=[{lat:latDB,lng:longDB},name]
         
     }
+    console.log(store);
     
     const infoWindow = new google.maps.InfoWindow();
     console.log(store);

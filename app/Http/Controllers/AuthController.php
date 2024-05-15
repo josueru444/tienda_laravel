@@ -31,7 +31,7 @@ class AuthController extends Controller
             $_SESSION['username']=$user_facebook->name;
             return redirect('/');
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            dd($e);
         }
 
     }
