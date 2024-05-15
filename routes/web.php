@@ -37,7 +37,8 @@ Route::get('/google-auth/callback', function () {
                 'google_id' => $user_google->id,
                 'name' => $user_google->name,
                 'email' => $user_google->email,
-                'avatar' => $user_google->avatar
+                'avatar' => $user_google->avatar,
+                'external_auth'=>'google'
             ]
         );
         Auth::login($user);
