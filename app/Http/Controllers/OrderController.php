@@ -14,6 +14,37 @@ use function Laravel\Prompts\select;
 
 class OrderController extends Controller
 {
+
+    public function individualUnpaidOrder(Request $request)
+    {
+        try {
+
+            $userId = auth()->user()->google_id;
+            $cartItem = new CartItem();
+            $cartItem->users_id = $userId;
+            //$cartItem->products_id = $idProduct;
+            //$cartItem->quantity = $quantityProd;
+            $cartItem->status = 1;
+            $cartItem->save();
+
+            //crear una orden----------------------------------------
+            $newOrder = new Orders();
+            $newOrder->users_id = $userId;
+            //$newOrder->shipping_address = $address;
+            $newOrder->status = "Paid";
+            $newOrder->save();
+
+            $lastOrder = Orders::latest('id')->first();
+            $lastCartItem = CartItem::latest('id')->where('status', 1)->where('users_id', $userId)->first();
+
+            $orderItems = new OrderItems();
+            $orderItems->order_id = $lastOrder->id;
+            $orderItems->cart_item_id = $lastCartItem->id;
+            $orderItems->save();
+        } catch (Exception $e) {
+            return response()->json(['error' => $e]);
+        }
+    }
     public function addOrderUnpaid(Request $request)
     {
         $userId = auth()->user()->id;
@@ -21,11 +52,8 @@ class OrderController extends Controller
 
             $userId = auth()->user()->google_id;
             $address = $request->input("address");
-            
-
             $items = CartItem::where('users_id', $userId)->where('status', 0)->get();
             // cambiar el status a 1
-
             CartItem::where('status', 0)->where('users_id', $userId)->update(['status' => 1]);
 
             $order = new Orders();
@@ -49,7 +77,7 @@ class OrderController extends Controller
                     $product->save();
                 }
             }
-            return response()->json(["status" => "success","red"=>$userId]);
+            return response()->json(["status" => "success", "red" => $userId]);
         } catch (Exception $e) {
             // Capturar cualquier excepción y retornar un error
             return response()->json(["error" => $e->getMessage()], 500);
@@ -61,7 +89,7 @@ class OrderController extends Controller
         $userId = $request->user;
         if ($userId == auth()->user()->google_id) {
 
-            $orders = Orders::where("users_id", $userId)->where('status', '!=', 'Delivered')->where('status', '!=', 'Cancelled')->where('status', '!=', 'Unpaid')->where('users_id',$userId)->orderByDesc('id')->get();
+            $orders = Orders::where("users_id", $userId)->where('status', '!=', 'Delivered')->where('status', '!=', 'Cancelled')->where('status', '!=', 'Unpaid')->where('users_id', $userId)->orderByDesc('id')->get();
             $numberOfUnpaidOrders = count($orders);
 
             return response()->json(['status' => 'success', 'orders' => $orders, 'long' => $numberOfUnpaidOrders]);
@@ -75,7 +103,7 @@ class OrderController extends Controller
         $userId = $request->user;
         if ($userId == auth()->user()->google_id) {
 
-            $orders = Orders::where('status', '=', 'Unpaid')->where('users_id',$userId)->orderByDesc('id')->get();
+            $orders = Orders::where('status', '=', 'Unpaid')->where('users_id', $userId)->orderByDesc('id')->get();
             $numberOfUnpaidOrders = count($orders);
 
             return response()->json(['status' => 'success', 'orders' => $orders, 'long' => $numberOfUnpaidOrders]);
@@ -89,7 +117,7 @@ class OrderController extends Controller
         $userId = $request->user;
         if ($userId == auth()->user()->google_id) {
 
-            $orders = Orders::where('status', '=', 'Delivered')->where('users_id',$userId)->orderByDesc('id')->get();
+            $orders = Orders::where('status', '=', 'Delivered')->where('users_id', $userId)->orderByDesc('id')->get();
             $numberOfUnpaidOrders = count($orders);
 
             return response()->json(['status' => 'success', 'orders' => $orders, 'long' => $numberOfUnpaidOrders]);
@@ -107,15 +135,20 @@ class OrderController extends Controller
             ->join('products', 'cart_items.products_id', '=', 'products.id')
             ->where('orders.users_id', $userId)
             ->where('orders.id', $orderId)
-            ->where('orders.status','!=','Cancelled') // Excluir el estado 'Cancelled'
+            ->where('orders.status', '!=', 'Cancelled')
             ->select('orders.id as order_id', 'orders.shipping_address', 'orders.status', 'orders.created_at', 'products.img', 'products.name', 'products.price', 'cart_items.quantity', 'products.id')
             ->get();
-
         $total = 0;
+        foreach ($details as $detail) {
+            
+            $itemTotal = $detail->price * $detail->quantity;
+
+            
+            $total += $itemTotal;
+        }
         
-            return view('customer.orderDetails', ['details' => $details, 'total' => $total]);
-        
-        
+
+        return view('customer.orderDetails', ['details' => $details, 'total' => $total]);
     }
 
     public function cancelOrder(Request $request)

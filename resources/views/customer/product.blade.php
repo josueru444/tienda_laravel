@@ -107,7 +107,7 @@
                                 </button>
                             @else
                                 <a href="{{ route('login') }}"
-                                    class="bg-blue-500 py-2 rounded-lg hover:bg-blue-600 text-center  sm:w-full col-span-2 ">Inicia sesión para
+                                    class="bg-blue-500 py-2 rounded-lg hover:bg-blue-600 text-center  sm:w-full col-span-1 ">Inicia sesión para
                                     comprar</a>
                             @endif
                         
@@ -271,4 +271,5 @@
         const priceProduct = {{ $product->price }}
     </script>
     <script src="{{ asset('js/products/shopping.js') }}"></script>
+    <script src="{{ asset('js/products/unpaidOrder.js') }}"></script>
 @endsection

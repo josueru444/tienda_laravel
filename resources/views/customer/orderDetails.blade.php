@@ -22,7 +22,7 @@
             <p>Dirección de envío:</p>
             <p><strong> {{$details[0]->shipping_address}}</strong></p>
             <p>Total del pedido(MXN):</p>
-            <p><strong>{{$total}}</strong></p>
+            <p><strong>${{$total}}</strong></p>
             <p>Status:</p>
             <p><strong>{{$details[0]->status}}</strong></p>
             @if ($details[0]->status=='Unpaid')

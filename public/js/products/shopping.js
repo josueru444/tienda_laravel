@@ -83,5 +83,6 @@ function selectPayment(event) {
         modal_paypal.showModal();
     } else {
         modal_pago_efectivo.showModal();
+        alert('Sin función');
     }
 }
