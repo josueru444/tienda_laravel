@@ -52,7 +52,7 @@ Route::get('/google-auth/callback', function () {
         dd($e->getMessage());
     }
 });
-
+//
 
 //Facebook
 
