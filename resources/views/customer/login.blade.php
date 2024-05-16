@@ -1,7 +1,7 @@
 @extends('layouts.nav')
 
 @section('content')
-    <section class="flex m-auto justify-center h-full w-full items-center" >
+    <section class="flex m-auto justify-center h-full w-full items-center px-5" >
             <div class="h-80 pb-11 w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                 <div class="">
                     <h1 class="mb-10 mt-3 text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
