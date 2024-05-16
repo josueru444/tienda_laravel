@@ -92,17 +92,17 @@
                                 </div>
                             @if (isset($userInfo))
                                 @if (isset($address[0]))
-                                    <button type="button" class="bg-blue-500 py-2 rounded-lg hover:bg-blue-600 col-span-3"
+                                    <button type="button" class="bg-blue-500 py-2 rounded-lg hover:bg-blue-600 col-span-2"
                                         onclick="showModalPayment()">
                                         Comprar
                                     </button>
                                 @else
-                                    <button type="button" class="bg-green-500 py-2 rounded-lg hover:bg-green-600 col-span-3"
+                                    <button type="button" class="bg-green-500 py-2 rounded-lg hover:bg-green-600 col-span-2"
                                         onclick="modal_address.showModal()">
                                         Registrar dirección para comprar
                                     </button>
                                 @endif
-                                <button class="bg-orange-500 rounded-lg hover:bg-orange-600 col-span-3 py-2">
+                                <button class="bg-orange-500 rounded-lg hover:bg-orange-600 col-start-2 col-span-2 py-2">
                                     Agregar al Carrito
                                 </button>
                             @else
