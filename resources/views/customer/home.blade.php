@@ -40,7 +40,7 @@
         
       </div>
 
-        <div class="grid grid-cols-5 gap-4 px-8 pb-5">
+        <div class="grid xl:grid-cols-5 gap-4 px-8 pb-5 md:grid-cols-2 sm:grid-cols-1 sm:grid">
             @foreach ($products as $product)
             <div class="bg-slate-800  py-5  flex flex-col items-center rounded-xl hover:scale-105 transition-transform hover:duration-300" >
                     <img  src="{{$product->img}}" alt="" width="200" class="rounded-xl">

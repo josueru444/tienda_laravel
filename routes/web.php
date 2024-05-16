@@ -60,7 +60,7 @@ Route::get('/facebook-auth/redirect', [AuthController::class, 'redirect'])->name
 
 
 Route::get('/facebook-auth/callback', [AuthController::class, 'callback'])->name('auth.callbak');
-
+//https://tienda-josue-ruiz-production.up.railway.app/facebook-auth/callback
 //logout
 
 Route::get('logout/', [LogoutController::class, 'logout'])->name('logout');

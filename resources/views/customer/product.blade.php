@@ -65,7 +65,7 @@
     
 
     <div class="w-full   bg-slate-700">
-        <div class="p-8 grid grid-cols-3">
+        <div class="xl:p-8 xl:grid xl:grid-cols-3 md:px-8 md:flex md:flex-col md:items-center flex flex-col px-5 ">
             <img src="{{ $product->img }}" alt="" width="400" class="rounded-xl">
             <div class="col-span-2 px-14">
                 <h1 class="text-white font-bold text-2xl m-1   py-2">{{ $product->name }}</h1>
@@ -81,9 +81,9 @@
 
                         <p class="text-md text-white pt-5 pb-5">{{ $product->stock }} Disponibles</p>
                         <p class="text-white mb-4">Cantidad:</p>
-                        <div class="grid grid-cols-3 gap-5 text-white">
+                        <div class="grid grid-cols-3 gap-5 text-white items-center align-middle">
 
-                            <div class="grid grid-cols-3 gap-3 mr-16">
+                            <div class="xl:grid xl:grid-cols-3 md:grid-cols-3 xl:w-full md:w-full xl:gap-3 md:gap-3 xl:mr-16 md:mr-16 grid space y-2">
                                 <button type="button" id="minus"
                                     class="tex-white hover:bg-blue-600 text-xl rounded-md bg-blue-500 px-3 text-center font-bold">-</button>
                                 <input disabled min="1" type="number" max="{{ $product->stock }}" required
@@ -91,7 +91,7 @@
                                     class="py-1  bg-slate-800 text-center rounded-lg border-2 border-slate-500">
                                 <button type="button" id="plus"
                                     class="tex-white hover:bg-blue-600 text-xl rounded-md bg-blue-500 px-3 text-center font-bold">+</button>
-                            </div>
+                                </div>
                             @if (isset($userInfo))
                                 @if (isset($address[0]))
                                     <button type="button" class="bg-blue-500 py-2 rounded-lg hover:bg-blue-600"
@@ -109,9 +109,10 @@
                                 </button>
                             @else
                                 <a href="{{ route('login') }}"
-                                    class="bg-blue-500 py-2 rounded-lg hover:bg-blue-600 text-center">Inicia sesión para
+                                    class="bg-blue-500 py-2 rounded-lg hover:bg-blue-600 text-center   sm:col-span-3 ">Inicia sesión para
                                     comprar</a>
                             @endif
+                        
                         </div>
 
                     </div>
